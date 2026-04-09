@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Stickman Cotton Collector</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background: #f0f0f0;
+        margin: 0;
+        padding: 20px;
+    }
+    #game {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        display: inline-block;
+    }
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 5px;
+        cursor: pointer;
+    }
+    #stickman {
+        font-size: 50px;
+        margin: 20px;
+    }
+</style>
+</head>
+<body>
+
+<div id="game">
+    <h1>Blackman Cotton Collector</h1>
+    <p><strong>Cotton:</strong> <span id="cotton">0</span></p>
+    <button id="collect">Click to Collect Cotton 🌾</button>
+    <button id="buyStickman">Buy a Black (Cost: 10 Cotton)</button>
+    <p><strong>Stickmen:</strong> <span id="stickmen">0</span></p>
+    <div id="stickman">👨🏿</div>
+</div>
+
+<script>
+let cotton = 0;
+let stickmen = 0;
+const cottonPerClick = 1;
+const stickmanCost = 10;
+const cottonPerStickman = 1;
+
+// Update Anzeige
+function updateDisplay() {
+    document.getElementById('cotton').textContent = cotton;
+    document.getElementById('stickmen').textContent = stickmen;
+}
+
+// Klick um Cotton zu sammeln
+document.getElementById('collect').addEventListener('click', () => {
+    cotton += cottonPerClick;
+    updateDisplay();
+});
+
+// Stickman kaufen
+document.getElementById('buyStickman').addEventListener('click', () => {
+    if (cotton >= stickmanCost) {
+        cotton -= stickmanCost;
+        stickmen += 1;
+        updateDisplay();
+    } else {
+        alert("Nicht genug Cotton!");
+    }
+});
+
+// Automatisch Cotton durch Stickmen sammeln
+setInterval(() => {
+    cotton += stickmen * cottonPerStickman;
+    updateDisplay();
+}, 1000); // jede Sekunde
+
+updateDisplay();
+</script>
+
+</body>
+</html>
