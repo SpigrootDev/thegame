@@ -32,25 +32,27 @@
 <body>
 
 <div id="game">
-    <h1>Blackman Cotton Collector</h1>
+    <h1>Cotton Collector</h1>
     <p><strong>Cotton:</strong> <span id="cotton">0</span></p>
     <button id="collect">Click to Collect Cotton 🌾</button>
-    <button id="buyStickman">Buy a Black (Cost: 10 Cotton)</button>
-    <p><strong>Blackmen:</strong> <span id="stickmen">0</span></p>
+    <button id="buyStickman">Buy A Black (Cost: <span id="stickmanCost">10</span> Cotton)</button>
+    <p><strong>Stickmen:</strong> <span id="stickmen">0</span></p>
     <div id="stickman">👨🏿</div>
 </div>
 
 <script>
 let cotton = 0;
 let stickmen = 0;
+let stickmanCost = 10; // Anfangspreis
 const cottonPerClick = 1;
-const stickmanCost = 10;
 const cottonPerStickman = 1;
+const costMultiplier = 1.15; // Preis steigt um 15% pro Stickman
 
 // Update Anzeige
 function updateDisplay() {
-    document.getElementById('cotton').textContent = cotton;
+    document.getElementById('cotton').textContent = Math.floor(cotton);
     document.getElementById('stickmen').textContent = stickmen;
+    document.getElementById('stickmanCost').textContent = Math.floor(stickmanCost);
 }
 
 // Klick um Cotton zu sammeln
@@ -64,9 +66,10 @@ document.getElementById('buyStickman').addEventListener('click', () => {
     if (cotton >= stickmanCost) {
         cotton -= stickmanCost;
         stickmen += 1;
+        stickmanCost *= costMultiplier; // Preis erhöhen
         updateDisplay();
     } else {
-        alert("Nicht genug Cotton!");
+        alert("Not enough Cotton, ur farmers can calculate better!");
     }
 });
 
