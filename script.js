@@ -280,7 +280,7 @@ function getPrice(item) {
     case 'maschine':
       return 50 + (gameData.maschinen * 20);
     case 'mitarbeiter':
-      return 200 + (gameData.mitarbeiter * 100);
+      return 200 + (gameData.mitarbeiter * 150);
   }
   return 0;
 }
