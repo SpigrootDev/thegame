@@ -174,6 +174,7 @@ function createNewGame(slotIndex, name) {
     nadeln: 0,
     maschinen: 0,
     mitarbeiter: 0,
+    coolaid: 0,
   };
 
   // Slot-Übersicht updaten
@@ -242,8 +243,13 @@ function updateUI() {
 // === Klick auf Wolle (manuelles Häckeln) ===
 
 wolleImg.addEventListener('click', () => {
-  gameData.socken += 1;
-  updateUI();
+  if(coolaid=0){
+    gameData.socken += 1;
+    updateUI();
+  }elseif(coolaid=1){
+    gameData.socken += 2;
+    updateUI();
+  }
 });
 
 // === Automatische Produktion ===
@@ -284,6 +290,16 @@ function getPrice(item) {
   }
   return 0;
 }
+
+buyCoolaidBtn.addEventListener('click', () => {
+  if(coolaid = 0){
+    const price = 2000;
+    if(gameData.socken >= price){
+      gameData.socken -= price;
+      coolaid = 1;
+    }
+  }
+});
 
 buyNadelBtn.addEventListener('click', () => {
   const price = getPrice('nadel');
@@ -387,45 +403,3 @@ setInterval(() => {
 // === Beim Laden Seite Menü zeigen ===
 
 showMainMenu();
-
-const clickTimes = [];
-const MAX_CLICKS = 30;
-
-document.addEventListener("click", () => {
-    const now = performance.now();
-    clickTimes.push(now);
-
-    // Keep only recent clicks
-    if (clickTimes.length > MAX_CLICKS) {
-        clickTimes.shift();
-    }
-
-    detectAutoClicker();
-});
-
-function detectAutoClicker() {
-    if (clickTimes.length < 10) return;
-
-    const intervals = [];
-
-    for (let i = 1; i < clickTimes.length; i++) {
-        intervals.push(clickTimes[i] - clickTimes[i - 1]);
-    }
-
-    const average = intervals.reduce((a, b) => a + b) / intervals.length;
-
-    const variance = intervals.reduce((sum, value) => {
-        return sum + Math.pow(value - average, 2);
-    }, 0) / intervals.length;
-
-    const stdDev = Math.sqrt(variance);
-    const cps = 1000 / average; // clicks per second
-
-    console.log("CPS:", cps.toFixed(2));
-    console.log("StdDev:", stdDev.toFixed(4));
-
-    // 🚨 Detection thresholds (tweak these)
-    if (cps > 15 && stdDev < 2) {
-       alert('NO AUTOCLICKER!');
-    }
-}
