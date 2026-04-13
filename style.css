@@ -1,0 +1,316 @@
+/* Reset & Grund */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  color: #34495e;
+  margin: 0;
+  padding: 20px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Hauptmenü */
+.main-menu {
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 50px 20px;
+}
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 40px;
+}
+
+.menu-buttons button {
+  padding: 15px 0;
+  font-size: 1.3rem;
+  border: none;
+  border-radius: 15px;
+  background-color: #2980b9;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
+
+.menu-buttons button:hover {
+  background-color: #1c5980;
+}
+
+/* Slots Screen */
+#slots-screen {
+  max-width: 450px;
+  margin: 30px auto;
+  text-align: center;
+}
+
+#slots-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.slot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f9f9f9;
+  padding: 12px 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.slot span {
+  font-weight: 600;
+}
+
+.slot button {
+  margin-left: 8px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 600;
+}
+
+.slot button:hover {
+  filter: brightness(0.9);
+}
+
+.slot button.delete-button {
+  background-color: #c0392b;
+  color: white;
+}
+
+.slot button.delete-button:hover {
+  background-color: #82281f;
+}
+
+.slot button:not(.delete-button) {
+  background-color: #2980b9;
+  color: white;
+}
+
+#slots-back-btn {
+  margin-top: 20px;
+  padding: 10px 25px;
+  border-radius: 12px;
+  background-color: #c0392b;
+  color: white;
+  border: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+#slots-back-btn:hover {
+  background-color: #82281f;
+}
+
+/* Neues Spiel Name Eingabe */
+.new-slot-name-container {
+  max-width: 400px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+.new-slot-name-container input {
+  width: 80%;
+  padding: 12px 8px;
+  font-size: 1rem;
+  border-radius: 12px;
+  border: 1.5px solid #ccc;
+  margin-bottom: 15px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.new-slot-name-container input:focus {
+  border-color: #2980b9;
+}
+
+.new-slot-name-container button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  border-radius: 15px;
+  border: none;
+  background-color: #2980b9;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
+
+.new-slot-name-container button:hover {
+  background-color: #1c5980;
+}
+
+/* Game Screen Container */
+.screen {
+  display: none;
+  width: 100%;
+  max-width: 900px;
+  height: 90vh;
+}
+
+.screen.active {
+  display: block;
+}
+
+.game-wrapper {
+  display: flex;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Click Area (links) */
+.click-area {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  border-right: 2px solid #ddd;
+}
+
+#socken-count {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 10px 0 5px;
+}
+
+#production-count {
+  font-size: 1rem;
+  color: #555;
+  margin: 0 0 20px 0;
+}
+
+#wolle {
+  width: 220px;
+  height: auto;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.1s ease;
+  border-radius: 20px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+#wolle:active {
+  transform: scale(0.9);
+}
+
+/* Shop Bereich (rechts) */
+.shop {
+  flex: 1;
+  background: #f9f9f9;
+  padding: 30px 25px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 18px;
+}
+
+.shop h2 {
+  margin-bottom: 15px;
+  color: #2c3e50;
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+
+.shop-item {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  padding: 12px 15px;
+  font-size: 1rem;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.shop-item:hover {
+  background-color: #2980b9;
+}
+
+/* Zurück Button */
+.back-button {
+  margin-top: auto;
+  background-color: #c0392b;
+  color: white;
+  border: none;
+  padding: 12px 15px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: 700;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #82281f;
+}
+
+@media (max-width: 768px) {
+  .game-wrapper {
+    flex-direction: column;
+    height: auto;
+    width: 95%;
+    max-width: none;
+  }
+
+  .click-area {
+    order: 1;
+    border-right: none;
+    border-bottom: 2px solid #ddd;
+    padding: 20px;
+  }
+
+  .shop {
+    order: 2;
+    padding: 20px;
+    flex: none;
+  }
+
+  .shop h2 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .shop-item {
+    font-size: 0.95rem;
+    padding: 10px 14px;
+  }
+
+  .back-button {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  #wolle {
+    width: 160px;
+  }
+
+  #socken-count {
+    font-size: 1.6rem;
+  }
+
+  #production-count {
+    font-size: 0.9rem;
+  }
+}

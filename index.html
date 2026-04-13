@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Häkel-Simulator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Hauptmenü -->
+  <div id="main-menu" class="main-menu">
+    <h1>Cotton Sim</h1>
+    <div class="menu-buttons">
+      <button id="menu-new-game">Start new game</button>
+      <button id="menu-load-game">Load Game</button>
+      <button id="menu-exit">Close</button>
+    </div>
+  </div>
+
+  <!-- Speicherstände-Auswahl -->
+  <div id="slots-screen" style="display:none;">
+    <h2>Save, load, delete</h2>
+    <div id="slots-container" class="slots-container"></div>
+    <button id="slots-back-btn">Back to menu</button>
+  </div>
+
+  <!-- Neues Spiel Name Eingabe -->
+  <div id="new-slot-name-container" class="new-slot-name-container" style="display:none;">
+    <h2>Create new Game</h2>
+    <input type="text" id="new-slot-name" placeholder="Name für deinen Speicherstand" maxlength="20" />
+    <br />
+    <button id="confirm-new-slot">Confirm</button>
+    <button id="cancel-new-slot">Back</button>
+  </div>
+
+  <!-- Spielbildschirm -->
+  <div id="gamescreen" class="screen" style="display:none;">
+    <div class="game-wrapper">
+      <!-- Linke Seite: Click-Area -->
+      <div class="click-area">
+        <p id="socken-count">Cotton: 0</p>
+        <p id="production-count">Production: 0 Cotton/Sek</p>
+        <img id="wolle" src="wool.webp" alt="Wolle" />
+        <p>Click on the cotton to farm cotton!</p>
+      </div>
+
+      <!-- Rechte Seite: Shop -->
+      <div class="shop">
+        <h2>Shop</h2>
+        <button id="buy-nadel" class="shop-item">
+          Blackman (+0,1 Cotton/Sek) — Price: <span id="price-nadel">10</span> Cotton
+        </button>
+        <button id="buy-maschine" class="shop-item">
+          Ultra Blackman (+1 Cotton/Sek) — Price: <span id="price-maschine">50</span> Cotton
+        </button>
+        <button id="buy-mitarbeiter" class="shop-item">
+          Indian Child (+5 Cotton/Sek) — Price: <span id="price-mitarbeiter">200</span> Cotton
+        </button>
+        <button id="back-to-menu" class="back-button">Back to Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
