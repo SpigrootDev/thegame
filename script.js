@@ -389,7 +389,7 @@ setInterval(() => {
 showMainMenu();
 
 const clickTimes = [];
-const MAX_CLICKS = 5;
+const MAX_CLICKS = 30;
 
 document.addEventListener("click", () => {
     const now = performance.now();
