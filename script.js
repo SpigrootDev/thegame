@@ -387,3 +387,45 @@ setInterval(() => {
 // === Beim Laden Seite Menü zeigen ===
 
 showMainMenu();
+
+const clickTimes = [];
+const MAX_CLICKS = 30;
+
+document.addEventListener("click", () => {
+    const now = performance.now();
+    clickTimes.push(now);
+
+    // Keep only recent clicks
+    if (clickTimes.length > MAX_CLICKS) {
+        clickTimes.shift();
+    }
+
+    detectAutoClicker();
+});
+
+function detectAutoClicker() {
+    if (clickTimes.length < 10) return;
+
+    const intervals = [];
+
+    for (let i = 1; i < clickTimes.length; i++) {
+        intervals.push(clickTimes[i] - clickTimes[i - 1]);
+    }
+
+    const average = intervals.reduce((a, b) => a + b) / intervals.length;
+
+    const variance = intervals.reduce((sum, value) => {
+        return sum + Math.pow(value - average, 2);
+    }, 0) / intervals.length;
+
+    const stdDev = Math.sqrt(variance);
+    const cps = 1000 / average; // clicks per second
+
+    console.log("CPS:", cps.toFixed(2));
+    console.log("StdDev:", stdDev.toFixed(4));
+
+    // 🚨 Detection thresholds (tweak these)
+    if (cps > 15 && stdDev < 2) {
+       alert('NO AUTOCLICKER!');
+    }
+}
