@@ -296,7 +296,7 @@ function getPrice(item) {
 }
 
 buyCoolaidBtn.addEventListener('click', () => {
-  if(coolaid = 0){
+  if(coolaid === 0){
     const price = 2000;
     if(gameData.socken >= price){
       gameData.socken -= price;
