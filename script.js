@@ -245,11 +245,11 @@ function updateUI() {
 // === Klick auf Wolle (manuelles Häckeln) ===
 
 wolleImg.addEventListener('click', () => {
-  if(coolaid=0){
+  if(gameData.coolaid === 0){
     gameData.socken += 1;
     updateUI();
   }else{
-    if(coolaid=1){
+    if(gameData.coolaid === 1){
     gameData.socken += 2;
     updateUI();
     }
