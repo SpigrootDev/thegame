@@ -21,6 +21,8 @@ const sockenCountEl = document.getElementById('socken-count');
 const productionCountEl = document.getElementById('production-count');
 const wolleImg = document.getElementById('wolle');
 
+const buyCoolaidBtn = document.getElementById('buy-coolaid');
+
 const buyNadelBtn = document.getElementById('buy-nadel');
 const buyMaschineBtn = document.getElementById('buy-maschine');
 const buyMitarbeiterBtn = document.getElementById('buy-mitarbeiter');

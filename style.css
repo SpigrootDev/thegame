@@ -244,6 +244,19 @@ body {
   transition: background-color 0.3s ease;
 }
 
+.sshop-item {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  padding: 6px 7px;
+  font-size: 1rem;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
 .shop-item:hover {
   background-color: #2980b9;
 }
