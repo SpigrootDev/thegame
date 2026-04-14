@@ -301,6 +301,7 @@ buyCoolaidBtn.addEventListener('click', () => {
     if(gameData.socken >= price){
       gameData.socken -= price;
       coolaid = 1;
+      updateUI();
     }
   }
 });
