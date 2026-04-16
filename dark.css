@@ -1,0 +1,361 @@
+/* =========================
+   GLOBAL
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Orbitron', 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top left, #1a1f2e, #0f111a 70%);
+  color: white;
+
+  height: 100dvh;
+  width: 100vw;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;   /* nur kleiner Rand, kein cm mehr */
+  box-sizing: border-box;
+
+  overflow: hidden;
+}
+
+/* =========================
+   MAIN MENU
+========================= */
+
+.main-menu {
+  width: 100%;
+  max-width: 520px;
+
+  padding: clamp(40px, 6vw, 80px);
+  border-radius: clamp(20px, 4vw, 30px);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(25px, 4vw, 45px);
+
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 60px rgba(0,255,255,0.15);
+}
+
+.menu-buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(15px, 3vw, 25px);
+}
+
+.menu-buttons button {
+  width: 100%;
+  padding: clamp(14px, 2.5vw, 20px);
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  border-radius: 18px;
+
+  border: 2px solid #00f5ff;
+  background: transparent;
+  color: #00f5ff;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.menu-buttons button:hover {
+  background: #00f5ff;
+  color: black;
+  box-shadow: 0 0 20px #00f5ff;
+}
+
+/* =========================
+   SCREEN WRAPPER
+========================= */
+
+.screen {
+  display: none;
+  width: 100%;
+  height: 100%;
+  max-width: 1400px;
+}
+
+.game-wrapper {
+  width: 100%;
+  height: 92vh;        /* wieder fast fullscreen */
+  max-width: 1400px;
+
+  display: flex;
+
+  border-radius: 25px;
+  overflow: hidden;
+
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 0 80px rgba(0,0,0,0.6);
+}
+
+/* =========================
+   CLICK AREA
+========================= */
+
+.click-area {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(20px, 3vw, 40px);
+
+  border-right: 1px solid rgba(255,255,255,0.08);
+  text-align: center;
+  transform: translateY(-8px);
+}
+
+#socken-count {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 700;
+  color: #00f5ff;
+}
+
+#production-count {
+  margin-bottom: clamp(20px, 3vw, 35px);
+  color: #aaa;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+}
+
+#wolle {
+  width: clamp(160px, 20vw, 280px);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.15s ease;
+  box-shadow: 0 0 30px rgba(0,255,255,0.5);
+}
+
+#wolle:hover {
+  transform: scale(1.05);
+}
+
+#wolle:active {
+  transform: scale(0.9);
+  box-shadow: 0 0 60px #00f5ff;
+}
+
+/* =========================
+   SHOP
+========================= */
+
+.shop {
+  flex: 1;
+  padding: clamp(20px, 3vw, 35px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(15px, 2vw, 25px);
+
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+
+  scrollbar-width: none;
+}
+
+.shop::-webkit-scrollbar {
+  display: none;
+}
+
+.shop h2 {
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  color: #ff00c8;
+}
+
+.shop-item {
+  padding: clamp(10px, 2vw, 16px);
+  border-radius: 15px;
+  border: none;
+
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  font-weight: 600;
+
+  background: linear-gradient(145deg, #1e2333, #141824);
+  color: white;
+  cursor: pointer;
+  transition: 0.25s ease;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+.shop-item:hover:not(:disabled) {
+  background: #ff00c8;
+  box-shadow: 0 0 20px #ff00c8;
+  transform: translateY(-3px);
+}
+
+.shop-item:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back-button {
+  margin-top: auto;
+  padding: clamp(10px, 2vw, 14px);
+  border-radius: 15px;
+  border: none;
+  font-weight: bold;
+
+  background: #ff3c3c;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.back-button:hover {
+  background: #ff0000;
+  box-shadow: 0 0 20px red;
+}
+
+/* =========================
+   SLOT SCREEN
+========================= */
+
+#slots-screen {
+  width: 100%;
+  max-width: 600px;
+  padding: clamp(25px, 4vw, 50px);
+  border-radius: 25px;
+
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 40px rgba(0,255,255,0.2);
+}
+
+.slot {
+  padding: 15px 20px;
+  border-radius: 15px;
+  margin-bottom: 12px;
+
+  background: rgba(255,255,255,0.08);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.slot button {
+  border: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+
+  background: #00f5ff;
+  color: black;
+}
+
+.slot button.delete-button {
+  background: #ff3c3c;
+  color: white;
+}
+
+/* =========================
+   INPUT DIALOG
+========================= */
+
+.new-slot-name-container {
+  width: 100%;
+  max-width: 500px;
+  padding: clamp(30px, 5vw, 50px);
+  border-radius: 25px;
+
+  text-align: center;
+
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 40px rgba(0,255,255,0.2);
+}
+
+.new-slot-name-container input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  margin-bottom: 20px;
+
+  background: #1e2333;
+  color: white;
+}
+
+.new-slot-name-container button {
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+
+  background: #00f5ff;
+  color: black;
+  font-weight: bold;
+}
+
+/* =========================
+   MOBILE LAYOUT
+========================= */
+
+@media (max-width: 900px) {
+
+  .game-wrapper {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .click-area {
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .shop {
+    max-height: 40vh;
+  }
+}
+
+@media (max-width: 480px) {
+
+  body {
+    align-items: flex-start;
+  }
+
+  .main-menu {
+    margin-top: 40px;
+  }
+}
+
+
+.theme-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+
+  padding: 10px 14px;
+  border-radius: 10px;
+
+  border: 1px solid #2a3245;
+  background: #1c2230;
+  color: white;
+
+  cursor: pointer;
+  font-size: 0.9rem;
+
+  z-index: 9999;
+
+  transition: 0.15s ease;
+}
+
+.theme-btn:hover {
+  background: #242c3d;
+}

@@ -1,5 +1,6 @@
 // === Konstanten & Variablen ===
 
+
 const MAX_SLOTS = 3;
 
 const mainMenu = document.getElementById('main-menu');
@@ -26,6 +27,7 @@ const buyCoolaidBtn = document.getElementById('buy-coolaid');
 const buyNadelBtn = document.getElementById('buy-nadel');
 const buyMaschineBtn = document.getElementById('buy-maschine');
 const buyMitarbeiterBtn = document.getElementById('buy-mitarbeiter');
+const buyKfcBtn = document.getElementById('buy-kfc');
 
 const backToMenuBtn = document.getElementById('back-to-menu');
 
@@ -177,6 +179,7 @@ function createNewGame(slotIndex, name) {
     maschinen: 0,
     mitarbeiter: 0,
     coolaid: 0,
+    kfc: 0,
   };
 
   // Slot-Übersicht updaten
@@ -197,7 +200,7 @@ function startGame(slotIndex) {
   const data = loadGameData(slotIndex);
 
   if (!data) {
-    alert('Couldnt Load game!');
+    alert('I AINT ABLE TO LOAD UR SHIT');
     showMainMenu();
     return;
   }
@@ -236,10 +239,12 @@ function updateUI() {
   buyNadelBtn.disabled = gameData.socken < getPrice('nadel');
   buyMaschineBtn.disabled = gameData.socken < getPrice('maschine');
   buyMitarbeiterBtn.disabled = gameData.socken < getPrice('mitarbeiter');
+  buyKfcBtn.disabled = gameData.socken < getPrice('kfc')
 
   document.getElementById('price-nadel').textContent = getPrice('nadel');
   document.getElementById('price-maschine').textContent = getPrice('maschine');
   document.getElementById('price-mitarbeiter').textContent = getPrice('mitarbeiter');
+  document.getElementById('price-kfc').textContent = getPrice('kfc');
 }
 
 // === Klick auf Wolle (manuelles Häckeln) ===
@@ -260,7 +265,7 @@ wolleImg.addEventListener('click', () => {
 
 function calculateProduction() {
   // Basierend auf Upgrades
-  return (gameData.nadeln * 0.1) + (gameData.maschinen * 1) + (gameData.mitarbeiter * 5);
+  return (gameData.nadeln * 0.1) + (gameData.maschinen * 1) + (gameData.mitarbeiter * 5) + (gameData.kfc * 10);
 }
 
 function startAutoProduction() {
@@ -291,6 +296,8 @@ function getPrice(item) {
       return 50 + (gameData.maschinen * 20);
     case 'mitarbeiter':
       return 200 + (gameData.mitarbeiter * 150);
+    case 'kfc':
+      return 1000 + (gameData.kfc * 500);
   }
   return 0;
 }
@@ -333,6 +340,15 @@ buyMitarbeiterBtn.addEventListener('click', () => {
   }
 });
 
+buyKfcBtn.addEventListener('click', () => {
+  const price = getPrice('kfc');
+  if (gameData.socken >= price) {
+    gameData.socken -= price;
+    gameData.kfc++;
+    updateUI();
+  }
+});
+
 // === Button Events Hauptmenü ===
 
 menuNewGameBtn.addEventListener('click', () => {
@@ -344,7 +360,7 @@ menuLoadGameBtn.addEventListener('click', () => {
 });
 
 menuExitBtn.addEventListener('click', () => {
-  if (confirm('Willst du das Spiel wirklich beenden?')) {
+  if (confirm('U REALLY WANNA LEAVE ME?')) {
     window.close(); // Geht im Browser nicht immer, aber okay
   }
 });
@@ -360,7 +376,7 @@ slotsBackBtn.addEventListener('click', () => {
 confirmNewSlotBtn.addEventListener('click', () => {
   const name = newSlotNameInput.value.trim();
   if (!name) {
-    alert('Bitte gib einen gültigen Namen ein.');
+    alert('YOU AINT PUTTIN A REAL NAME, I AINT CONNA CREATE IT');
     return;
   }
 
@@ -369,7 +385,7 @@ confirmNewSlotBtn.addEventListener('click', () => {
   const freeSlotIndex = slots.findIndex(slot => slot === null);
 
   if (freeSlotIndex === -1) {
-    alert('Keine freien Speicherplätze mehr vorhanden!');
+    alert('THERE AINT NO SPACE');
     showSlotsScreen();
     return;
   }
@@ -384,7 +400,7 @@ cancelNewSlotBtn.addEventListener('click', () => {
 // === Spiel Zurück zum Menü Button ===
 
 backToMenuBtn.addEventListener('click', () => {
-  if (confirm('Spielstand speichern und zum Menü zurückkehren?')) {
+  if (confirm('U WANNA SAVE?')) {
     saveGameData(currentSlotIndex, gameData);
     quitToMenu();
   }
