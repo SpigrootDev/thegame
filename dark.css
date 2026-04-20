@@ -197,6 +197,43 @@ body {
   cursor: not-allowed;
 }
 
+.buy-amount-selector,
+.buy-controls {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.buy-amount-selector span {
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+.buy-amount {
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #00f5ff;
+  background: transparent;
+  color: #00f5ff;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.buy-amount:hover {
+  background: #00f5ff;
+  color: black;
+}
+
+.buy-amount.active {
+  background: #00f5ff;
+  color: black;
+  box-shadow: 0 0 10px #00f5ff;
+}
+
 /* =========================
    BACK BUTTON
 ========================= */

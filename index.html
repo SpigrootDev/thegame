@@ -10,28 +10,44 @@
 
   <!-- Hauptmenü -->
   <div id="main-menu" class="main-menu">
-    <h1>Cotton Sim</h1>
+    <h1 data-i18n="title">Cotton Sim</h1>
     <div class="menu-buttons">
-      <button id="menu-new-game">Start new game</button>
-      <button id="menu-load-game">Load Game</button>
-      <button id="menu-exit">Close</button>
+      <button id="menu-new-game" data-i18n="start_new_game">Start new game</button>
+      <button id="menu-load-game" data-i18n="load_game">Load Game</button>
+      <button id="menu-settings" data-i18n="settings">Settings</button>
+      <button id="menu-exit" data-i18n="close">Close</button>
     </div>
   </div>
 
   <!-- Speicherstände-Auswahl -->
   <div id="slots-screen" style="display:none;">
-    <h2>Save, load, delete</h2>
+    <h2 data-i18n="save_load_delete">Save, load, delete</h2>
     <div id="slots-container" class="slots-container"></div>
-    <button id="slots-back-btn">Back to menu</button>
+    <button id="slots-back-btn" data-i18n="back_to_menu">Back to menu</button>
+  </div>
+
+  <!-- Einstellungen -->
+  <div id="settings-screen" style="display:none;">
+    <h2 data-i18n="settings_title">Settings</h2>
+    <div class="settings-group">
+      <p data-i18n="select_language">Select your language</p>
+      <div class="language-buttons">
+        <button class="lang-btn active" data-lang="en">English</button>
+        <button class="lang-btn" data-lang="da">Dansk</button>
+        <button class="lang-btn" data-lang="de">Deutsch</button>
+      </div>
+    </div>
+    <p id="other-settings-note" data-i18n="other_settings">Other settings coming soon</p>
+    <button id="settings-back-btn" class="back-button" data-i18n="back_to_menu">Back</button>
   </div>
 
   <!-- Neues Spiel Name Eingabe -->
   <div id="new-slot-name-container" class="new-slot-name-container" style="display:none;">
-    <h2>Create new Game</h2>
-    <input type="text" id="new-slot-name" placeholder="Name für deinen Speicherstand" maxlength="20" />
+    <h2 data-i18n="create_new_game">Create new Game</h2>
+    <input type="text" id="new-slot-name" data-i18n-placeholder="placeholder_name" placeholder="Name für deinen Speicherstand" maxlength="20" />
     <br />
-    <button id="confirm-new-slot">Confirm</button>
-    <button id="cancel-new-slot">Back</button>
+    <button id="confirm-new-slot" data-i18n="confirm">Confirm</button>
+    <button id="cancel-new-slot" data-i18n="back">Back</button>
   </div>
 
   <!-- Spielbildschirm -->
@@ -42,29 +58,43 @@
         <p id="socken-count">Cotton: 0</p>
         <p id="production-count">Production: 0 Cotton/Sek</p>
         <img id="wolle" src="wol.webp" alt="Wolle" />
-        <p>Click on the cotton to farm cotton!</p>
+        <p id="click-prompt" data-i18n="click_to_farm">Click on the cotton to farm cotton!</p>
+      </div>
+
+      <!-- Rechte Seite: Onetime Upgrades -->
+      <div class="shop">
+        <h2 data-i18n="onetime_upgrades">Onetime Upgrades</h2>
+        <div id="onetime-container"></div>
       </div>
 
       <!-- Rechte Seite: Shop -->
       <div class="shop">
-        <button id="buy-coolaid" class="shop-item">KoolAid (Doubleclick) — Price: 2000</button>
-      </div>
-      <br>
-      <div class="shop">
-        <h2>Shop</h2>
-        <button id="buy-nadel" class="shop-item">
-          Blackman (+0,1 Cotton/Sec) — Price: <span id="price-nadel">10</span> Cotton
+        <h2 data-i18n="shop">Shop</h2>
+        <div class="buy-amount-selector">
+          <span data-i18n="buy_amount">Buy amount:</span>
+          <button class="buy-amount active" data-amount="1">x1</button>
+          <button class="buy-amount" data-amount="10">x10</button>
+          <button class="buy-amount" data-amount="100">x100</button>
+        </div>
+        <button id="buy-nadel" class="shop-item" style="width: 100%;">
+          <span id="buy-nadel-label">Blackman</span> (+0,1 Cotton/Sec) — Price: <span id="price-nadel">10</span> Cotton
         </button>
-        <button id="buy-maschine" class="shop-item">
-          Ultra Blackman (+1 Cotton/Sec) — Price: <span id="price-maschine">50</span> Cotton
+        <button id="buy-maschine" class="shop-item" style="width: 100%;">
+          <span id="buy-maschine-label">Ultra Blackman</span> (+1 Cotton/Sec) — Price: <span id="price-maschine">50</span> Cotton
         </button>
-        <button id="buy-mitarbeiter" class="shop-item">
-          Indian Child (+5 Cotton/Sec) — Price: <span id="price-mitarbeiter">200</span> Cotton
+        <button id="buy-mitarbeiter" class="shop-item" style="width: 100%;">
+          <span id="buy-mitarbeiter-label">Indian Child</span> (+5 Cotton/Sec) — Price: <span id="price-mitarbeiter">200</span> Cotton
         </button>
-        <button id="buy-kfc" class="shop-item">
-          KFC (+10 Cotton/Sec) — Price: <span id="price-kfc"></span>
+        <button id="buy-kfc" class="shop-item" style="width: 100%;">
+          <span id="buy-kfc-label">KFC</span> (+10 Cotton/Sec) — Price: <span id="price-kfc"></span> Cotton
         </button>
-        <button id="back-to-menu" class="back-button">Back to Menu</button>
+        <button id="buy-malik" class="shop-item" style="width: 100%;">
+          <span id="buy-malik-label">Malik</span> (+20 Cotton/Sec) — Price: <span id="price-malik">500</span> Cotton
+        </button>
+        <button id="buy-oliver" class="shop-item" style="width: 100%;">
+          <span id="buy-oliver-label">Oliver</span> (+50 Cotton/Sec) — Price: <span id="price-oliver">2000</span> Cotton
+        </button>
+        <button id="back-to-menu" class="back-button" data-i18n="back_to_menu">Back to Menu</button>
       </div>
     </div>
   </div>
