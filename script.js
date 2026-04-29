@@ -42,6 +42,7 @@ let gameData = null;
 let autoProductionInterval = null;
 let currentOnetimeLevel = -1;
 let onetimeBtn = null;
+let psw = "7439";
 
 // Current global purchase amount (x1, x10, x100)
 let currentBuyAmount = 1;
@@ -857,7 +858,7 @@ setInterval(() => {
 
 // Enable cheats with password
 window.Admin = function(password) {
-  if (password !== "7439") {
+  if (password !== psw) {
     console.log("Access denied: Wrong password");
     return;
   }
