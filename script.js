@@ -577,6 +577,9 @@ function updateUI() {
   const buyMalikLabel = document.getElementById('buy-malik-label');
   if (buyMalikLabel) buyMalikLabel.textContent = texts.malik;
 
+  const buyAutomaticPickerLabel = document.getElementById('buy-automatic-picker-label');
+  if (buyAutomaticPickerLabel) buyAutomaticPickerLabel.textContent = texts.automatic_picker;
+
 
   // Render onetime upgrades
   const onetimeContainer = document.getElementById('onetime-container');
