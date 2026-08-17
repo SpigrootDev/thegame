@@ -33,7 +33,7 @@ const buyKfcBtn = document.getElementById('buy-kfc');
 
 const buyMalikBtn = document.getElementById('buy-malik');
 const buyOliverBtn = document.getElementById('buy-oliver');
-const buyAutomaticPickerBtn = document.getElementById('buy-automatic-picker');
+const buyTobiasBtn = document.getElementById('buy-tobias');
 
 const backToMenuBtn = document.getElementById('back-to-menu');
 
@@ -490,7 +490,7 @@ function createNewGame(slotIndex, name) {
     oliver: 0,
     malikX2: 0,
     oliverX2: 0,
-    automaticPicker: 0,
+    tobias: 0,
   };
 
   // Slot-Übersicht updaten
@@ -526,7 +526,7 @@ function startGame(slotIndex) {
   if (gameData.oliver === undefined) gameData.oliver = 0;
   if (gameData.malikX2 === undefined) gameData.malikX2 = 0;
   if (gameData.oliverX2 === undefined) gameData.oliverX2 = 0;
-  if (gameData.automaticPicker === undefined) gameData.automaticPicker = 0;
+  if (gameData.tobias === undefined) gameData.tobias = 0;
 
   updateUI();
   showGameScreen();
@@ -577,8 +577,8 @@ function updateUI() {
   const buyMalikLabel = document.getElementById('buy-malik-label');
   if (buyMalikLabel) buyMalikLabel.textContent = texts.malik;
 
-  const buyAutomaticPickerLabel = document.getElementById('buy-automatic-picker-label');
-  if (buyAutomaticPickerLabel) buyAutomaticPickerLabel.textContent = texts.automatic_picker;
+  const buyTobiasLabel = document.getElementById('buy-tobias-label');
+  if (buyTobiasLabel) buyTobiasLabel.textContent = texts.tobias;
 
 
   // Render onetime upgrades
@@ -616,7 +616,7 @@ function updateUI() {
   buyKfcBtn.disabled = gameData.cotton < getBulkPrice('kfc', currentBuyAmount);
   buyMalikBtn.disabled = gameData.cotton < getBulkPrice('malik', currentBuyAmount);
   buyOliverBtn.disabled = gameData.cotton < getBulkPrice('oliver', currentBuyAmount);
-  buyAutomaticPickerBtn.disabled = gameData.cotton < getBulkPrice('automaticPicker', currentBuyAmount);
+  buyTobiasBtn.disabled = gameData.cotton < getBulkPrice('tobias', currentBuyAmount);
 
   document.getElementById('price-nadel').textContent = getBulkPrice('nadel', currentBuyAmount);
   document.getElementById('price-maschine').textContent = getBulkPrice('maschine', currentBuyAmount);
@@ -624,7 +624,7 @@ function updateUI() {
   document.getElementById('price-kfc').textContent = getBulkPrice('kfc', currentBuyAmount);
   document.getElementById('price-malik').textContent = getBulkPrice('malik', currentBuyAmount);
   document.getElementById('price-oliver').textContent = getBulkPrice('oliver', currentBuyAmount);
-  document.getElementById('price-automatic-picker').textContent = getBulkPrice('automaticPicker', currentBuyAmount);
+  document.getElementById('price-tobias').textContent = getBulkPrice('tobias', currentBuyAmount);
 
   // Update button texts with amount
   buyNadelBtn.innerHTML = `Blackman x${currentBuyAmount} (+${(0.1 * currentBuyAmount).toFixed(1)} Cotton/Sec) — Price: <span id="price-nadel">${getBulkPrice('nadel', currentBuyAmount)}</span> Cotton`;
@@ -632,7 +632,7 @@ function updateUI() {
   buyMitarbeiterBtn.innerHTML = `Indian Child x${currentBuyAmount} (+${5 * currentBuyAmount} Cotton/Sec) — Price: <span id="price-mitarbeiter">${getBulkPrice('mitarbeiter', currentBuyAmount)}</span> Cotton`;
   buyKfcBtn.innerHTML = `KFC x${currentBuyAmount} (+${10 * currentBuyAmount} Cotton/Sec) — Price: <span id="price-kfc">${getBulkPrice('kfc', currentBuyAmount)}</span> Cotton`;
   buyMalikBtn.innerHTML = `Malik x${currentBuyAmount} (+${20 * currentBuyAmount} Cotton/Sec) — Price: <span id="price-malik">${getBulkPrice('malik', currentBuyAmount)}</span> Cotton`;
-  buyAutomaticPickerBtn.innerHTML = `Automatic Picker x${currentBuyAmount} (+${100 * currentBuyAmount} Cotton/Sec) — Price: <span id="price-automatic-picker">${getBulkPrice('automaticPicker', currentBuyAmount)}</span> Cotton`;
+  buyTobiasBtn.innerHTML = `Tobias x${currentBuyAmount} (+${100 * currentBuyAmount} Cotton/Sec) — Price: <span id="price-tobias">${getBulkPrice('tobias', currentBuyAmount)}</span> Cotton`;
 
   // Update Oliver button name if upgrade purchased
   const oliverBtn = document.getElementById('buy-oliver');
@@ -657,7 +657,7 @@ wolleImg.addEventListener('click', () => {
 
 function calculateProduction() {
   // Based on upgrades
-  let prod = (gameData.needles * 0.1) + (gameData.machines * 1) + (gameData.employees * 5) + (gameData.kfc * 10) + (gameData.malik * 20) + (gameData.oliver * 50) + (gameData.automaticPicker * 100);
+  let prod = (gameData.needles * 0.1) + (gameData.machines * 1) + (gameData.employees * 5) + (gameData.kfc * 10) + (gameData.malik * 20) + (gameData.oliver * 50) + (gameData.tobias * 100);
 
   // Apply onetime upgrades
   if (gameData.superTools) prod *= 1.5;
@@ -703,7 +703,7 @@ function getPriceForCount(item, count) {
       return 500 + (count * 1000);
     case 'oliver':
       return 2000 + (count * 3000);
-    case 'automaticPicker':
+    case 'tobias':
       return 10000 + (count * 5000);
   }
   return 0;
@@ -711,13 +711,13 @@ function getPriceForCount(item, count) {
 
 function getPrice(item) {
   // Price for the next item
-  const count = gameData[item + 's'] || gameData[item.replace('nadel', 'needles').replace('maschine', 'machines').replace('mitarbeiter', 'employees').replace('kfc', 'kfc').replace('malik', 'malik').replace('oliver', 'oliver')];
+  const count = gameData[item + 's'] || gameData[item.replace('nadel', 'needles').replace('maschine', 'machines').replace('mitarbeiter', 'employees').replace('kfc', 'kfc').replace('malik', 'malik').replace('oliver', 'oliver').replace('tobias', 'tobias')];
   return getPriceForCount(item, count);
 }
 
 function getBulkPrice(item, amount) {
   let total = 0;
-  let currentCount = gameData[item + 's'] || gameData[item.replace('nadel', 'needles').replace('maschine', 'machines').replace('mitarbeiter', 'employees').replace('kfc', 'kfc').replace('malik', 'malik').replace('oliver', 'oliver')];
+  let currentCount = gameData[item + 's'] || gameData[item.replace('nadel', 'needles').replace('maschine', 'machines').replace('mitarbeiter', 'employees').replace('kfc', 'kfc').replace('malik', 'malik').replace('oliver', 'oliver').replace('tobias', 'tobias')];
   for (let i = 0; i < amount; i++) {
     total += getPriceForCount(item, currentCount + i);
   }
@@ -786,12 +786,12 @@ buyOliverBtn.addEventListener('click', () => {
   }
 });
 
-buyAutomaticPickerBtn.addEventListener('click', () => {
+buyTobiasBtn.addEventListener('click', () => {
   const amount = currentBuyAmount;
-  const price = getBulkPrice('automaticPicker', amount);
+  const price = getBulkPrice('tobias', amount);
   if (gameData.cotton >= price) {
     gameData.cotton -= price;
-    gameData.automaticPicker += amount;
+    gameData.tobias += amount;
     updateUI();
   }
 });
