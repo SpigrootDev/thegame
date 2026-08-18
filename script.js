@@ -274,6 +274,14 @@ const onetimeUpgrades = [
     effect: () => {
       gameData.oliverX2 = 1;
     }
+  },
+  {
+    nameKey: 'upgrade_hit_tobias',
+    descKey: 'upgrade_hit_tobias_desc',
+    price: 1000000,
+    effect: () => {
+      gameData.hitTobias = 1;
+    }
   }
 ];
 
@@ -491,6 +499,7 @@ function createNewGame(slotIndex, name) {
     malikX2: 0,
     oliverX2: 0,
     tobias: 0,
+    hitTobias: 0,
   };
 
   // Slot-Übersicht updaten
@@ -527,7 +536,7 @@ function startGame(slotIndex) {
   if (gameData.malikX2 === undefined) gameData.malikX2 = 0;
   if (gameData.oliverX2 === undefined) gameData.oliverX2 = 0;
   if (gameData.tobias === undefined) gameData.tobias = 0;
-
+  if (gameData.hitTobias === undefined) gameData.hitTobias = 0;
   updateUI();
   showGameScreen();
   startAutoProduction();
@@ -665,6 +674,7 @@ function calculateProduction() {
   if (gameData.ultimateBoost) prod += gameData.kfc * 20; // additional 20 per kfc
   if (gameData.malikX2) prod += gameData.malik * 20; // additional 20 per malik
   if (gameData.oliverX2) prod += gameData.oliver * 50; // additional 50 per oliver
+  if (gameData.hitTobias) prod += gameData.tobias * 75; // additional 75 per tobias
 
   return prod;
 }
