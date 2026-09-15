@@ -144,6 +144,25 @@ body {
   box-shadow: 0 0 60px #00f5ff;
 }
 
+.autoclick-warning {
+  margin-top: 16px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(255, 189, 0, 0.12);
+  border: 1px solid rgba(255, 189, 0, 0.8);
+  color: #ffd166;
+  font-weight: 700;
+  max-width: 440px;
+  text-align: center;
+}
+
+.autoclick-warning.critical {
+  background: rgba(255, 52, 52, 0.12);
+  border-color: rgba(255, 52, 52, 0.9);
+  color: #ff8d8d;
+  box-shadow: 0 0 18px rgba(255, 52, 52, 0.35);
+}
+
 /* =========================
    SHOP
 ========================= */
