@@ -1030,3 +1030,16 @@ document.addEventListener('click', (e) => {
     setLanguage(e.target.dataset.lang);
   }
 });
+
+
+
+
+// Verhindert Drag & Drop auf der gesamten Seite
+document.addEventListener("dragstart", function(event) {
+    event.preventDefault();
+});
+
+// Verhindert Auswahl/Markieren
+document.addEventListener("selectstart", function(event) {
+    event.preventDefault();
+});
