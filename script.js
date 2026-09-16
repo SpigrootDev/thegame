@@ -655,13 +655,19 @@ function updateUI() {
   });
 }
 
-// === Autoclicker Detection ===
+// === Fast Click Message ===
 
 function showAutoClickerWarning(message, isCritical = false) {
   if (!autoclickWarningEl) return;
   autoclickWarningEl.textContent = message;
   autoclickWarningEl.hidden = false;
   autoclickWarningEl.classList.toggle('critical', isCritical);
+
+  clearTimeout(showAutoClickerWarning.timeoutId);
+  showAutoClickerWarning.timeoutId = setTimeout(() => {
+    autoclickWarningEl.hidden = true;
+    autoclickWarningEl.textContent = '';
+  }, 900);
 }
 
 const autoclickDetector = {
@@ -691,7 +697,6 @@ wolleImg.addEventListener('click', (event) => {
 
   if (isFastClickPattern(event)) {
     showAutoClickerWarning('if you use auto-clicker ur gay', false);
-    return;
   }
 
   const multiplier = gameData.koolaid > 0 ? 2 : 1;
