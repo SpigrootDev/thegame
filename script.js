@@ -44,9 +44,6 @@ let autoProductionInterval = null;
 let currentOnetimeLevel = -1;
 let onetimeBtn = null;
 let psw = "7439";
-const AUTOCLICKER_KEY = 'haekel_autoclicker_detected';
-const AUTOCLICKER_WARNING_TS_KEY = 'haekel_autoclicker_warning_ts';
-const AUTOCLICKER_WARNING_COOLDOWN_MS = 20000;
 const autoclickWarningEl = document.getElementById('autoclick-warning');
 
 // Current global purchase amount (x1, x10, x100)
@@ -334,26 +331,6 @@ function saveGameData(slotIndex, data) {
 function deleteGameData(slotIndex) {
   const key = getGameKey(slotIndex);
   localStorage.removeItem(key);
-}
-
-function clearAllSavedGames() {
-  for (let i = 0; i < MAX_SLOTS; i++) {
-    deleteGameData(i);
-  }
-  localStorage.removeItem('haekel_slots');
-  localStorage.removeItem(AUTOCLICKER_KEY);
-  localStorage.removeItem(AUTOCLICKER_WARNING_TS_KEY);
-
-  if (currentSlotIndex !== null || gameData !== null) {
-    currentSlotIndex = null;
-    gameData = null;
-    stopAutoProduction();
-  }
-
-  if (typeof renderSlots === 'function') {
-    renderSlots();
-  }
-  showMainMenu();
 }
 
 function loadSettings() {
@@ -687,37 +664,12 @@ function showAutoClickerWarning(message, isCritical = false) {
   autoclickWarningEl.classList.toggle('critical', isCritical);
 }
 
-function triggerAutoClickerWarning() {
-  const now = Date.now();
-  const previousDetections = Number(localStorage.getItem(AUTOCLICKER_KEY) || 0);
-  const firstWarningTimestamp = Number(localStorage.getItem(AUTOCLICKER_WARNING_TS_KEY) || 0);
-
-  if (previousDetections === 0) {
-    localStorage.setItem(AUTOCLICKER_KEY, '1');
-    localStorage.setItem(AUTOCLICKER_WARNING_TS_KEY, String(now));
-    showAutoClickerWarning('Auto-clicker detected. Warning 1/2. Stop using automated clicks.', false);
-    return;
-  }
-
-  const timeSinceFirstWarning = now - firstWarningTimestamp;
-
-  if (timeSinceFirstWarning < AUTOCLICKER_WARNING_COOLDOWN_MS) {
-    showAutoClickerWarning(`Auto-clicker detected. Warning 1/2. Stop using automated clicks. The save wipe will trigger in ${Math.ceil((AUTOCLICKER_WARNING_COOLDOWN_MS - timeSinceFirstWarning) / 1000)}s.`, false);
-    return;
-  }
-
-  localStorage.setItem(AUTOCLICKER_KEY, String(previousDetections + 1));
-  showAutoClickerWarning('Second auto-clicker detection. All saved games have been deleted.', true);
-  clearAllSavedGames();
-}
-
 const autoclickDetector = {
   timestamps: [],
-  lastClickAt: 0,
-  lastWarningAt: 0
+  lastClickAt: 0
 };
 
-function isAutoClickPattern(event) {
+function isFastClickPattern(event) {
   const now = performance.now();
   autoclickDetector.timestamps.push(now);
   autoclickDetector.timestamps = autoclickDetector.timestamps.filter(time => time > now - 500);
@@ -737,8 +689,8 @@ function isAutoClickPattern(event) {
 wolleImg.addEventListener('click', (event) => {
   if (!gameData) return;
 
-  if (isAutoClickPattern(event)) {
-    triggerAutoClickerWarning();
+  if (isFastClickPattern(event)) {
+    showAutoClickerWarning('if you use auto-clicker ur gay', false);
     return;
   }
 
